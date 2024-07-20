@@ -1,9 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include "model_viewer.hpp"
 #include "camera.hpp" // Include the camera header
+#include <cmath>
 
 int main() {
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/teapot.obj")) {
+    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/xyzrgb_dragon.obj")) {
         return -1;
     }
 
@@ -19,7 +20,12 @@ int main() {
 
     Camera camera; // Create an instance of Camera
 
-    sf::FloatRect boundingBox;
+    // Calculate initial bounding box and determine initial zoom level
+    sf::FloatRect boundingBox = calculateBoundingBox(vertices, angleX, angleY, 1.0f);
+    float initialZoomX = window.getSize().x / (boundingBox.width + 40); // Adding some margin
+    float initialZoomY = window.getSize().y / (boundingBox.height + 40); // Adding some margin
+    zoom = std::min(initialZoomX, initialZoomY);
+
 
     while (window.isOpen()) {
         sf::Event event;

@@ -37,6 +37,8 @@ void drawBoundingBox(sf::RenderWindow& window, const sf::FloatRect& boundingBox)
 
 void drawConvexHull(sf::RenderWindow& window, float angleX, float angleY, float zoom);
 
+
+
 std::vector<sf::Vector3f> calculateConvexHull(const std::vector<sf::Vector3f>& points);
 
 #endif // MODEL_VIEWER_HPP

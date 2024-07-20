@@ -82,6 +82,7 @@ sf::FloatRect calculateBoundingBox(const std::vector<Vertex>& vertices, float an
     return boundingBox;
 }
 
+
 void drawBoundingBox(sf::RenderWindow& window, const sf::FloatRect& boundingBox) {
     sf::VertexArray lines(sf::LinesStrip, 5);
 
@@ -97,6 +98,7 @@ void drawBoundingBox(sf::RenderWindow& window, const sf::FloatRect& boundingBox)
 
     window.draw(lines);
 }
+
 
 
 
