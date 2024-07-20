@@ -28,8 +28,9 @@ bool loadOBJ(const std::string& filename);
 // Function to rotate a vertex
 sf::Vector3f rotateVertex(const sf::Vector3f& vertex, float angleX, float angleY);
 
-void drawModelWireframe(sf::RenderWindow& window, float angleX, float angleY, float zoom, sf::Vector3f offset);
-void drawModelSolid(sf::RenderWindow& window, float angleX, float angleY, float zoom, sf::Vector3f offset);
+// Functions to draw the model
+void drawModelWireframe(sf::RenderWindow& window, float angleX, float angleY, float zoom);
+void drawModelSolid(sf::RenderWindow& window, float angleX, float angleY, float zoom);
 
 sf::FloatRect calculateBoundingBox(const std::vector<Vertex>& vertices, float angleX, float angleY, float zoom);
 void drawBoundingBox(sf::RenderWindow& window, const sf::FloatRect& boundingBox);

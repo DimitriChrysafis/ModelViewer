@@ -2,17 +2,13 @@
 #include "model_viewer.hpp"
 #include "camera.hpp" // Include the camera header
 
-
 int main() {
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/xyzrgb_dragon.obj")) {
+    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cow.obj")) {
         return -1;
     }
 
     sf::RenderWindow window(sf::VideoMode(640, 480), "3D Thing");
     window.setFramerateLimit(60);
-
-
-    sf::Vector3f offset(0.0f, 0.0f, 0.0f);
 
     float angleX = 0.0f;
     float angleY = 0.0f;
@@ -21,10 +17,9 @@ int main() {
     bool showBoundingBox = false;
     bool showConvexHull = false;
 
-    Camera camera;
+    Camera camera; // Create an instance of Camera
 
-    sf::FloatRect boundingBox = calculateBoundingBox(vertices, angleX, angleY, zoom);
-    zoom = std::min(window.getSize().x / boundingBox.width, window.getSize().y / boundingBox.height) * 0.9f;
+    sf::FloatRect boundingBox;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -51,17 +46,16 @@ int main() {
         // Update camera based on input
         camera.update(window, angleX, angleY, zoom);
 
-        // Recalculate bounding box to adjust zoom if needed
+        // Calculate the bounding box if needed
         if (showBoundingBox) {
             boundingBox = calculateBoundingBox(vertices, angleX, angleY, zoom);
-            zoom = std::min(window.getSize().x / boundingBox.width, window.getSize().y / boundingBox.height) * 0.9f;
         }
 
         window.clear();
         if (wireframe) {
-            drawModelWireframe(window, angleX, angleY, zoom, offset);
+            drawModelWireframe(window, angleX, angleY, zoom);
         } else {
-            drawModelSolid(window, angleX, angleY, zoom, offset);
+            drawModelSolid(window, angleX, angleY, zoom);
         }
         if (showBoundingBox) {
             drawBoundingBox(window, boundingBox);
