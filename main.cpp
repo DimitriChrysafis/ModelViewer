@@ -2,8 +2,9 @@
 #include "model_viewer.hpp"
 #include "camera.hpp" // Include the camera header
 
+
 int main() {
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cow.obj")) {
+    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/horse.obj")) {
         return -1;
     }
 
@@ -17,9 +18,10 @@ int main() {
     bool showBoundingBox = false;
     bool showConvexHull = false;
 
-    Camera camera; // Create an instance of Camera
+    Camera camera;
 
-    sf::FloatRect boundingBox;
+    sf::FloatRect boundingBox = calculateBoundingBox(vertices, angleX, angleY, zoom);
+    zoom = std::min(window.getSize().x / boundingBox.width, window.getSize().y / boundingBox.height) * 0.9f;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -46,9 +48,10 @@ int main() {
         // Update camera based on input
         camera.update(window, angleX, angleY, zoom);
 
-        // Calculate the bounding box if needed
+        // Recalculate bounding box to adjust zoom if needed
         if (showBoundingBox) {
             boundingBox = calculateBoundingBox(vertices, angleX, angleY, zoom);
+            zoom = std::min(window.getSize().x / boundingBox.width, window.getSize().y / boundingBox.height) * 0.9f;
         }
 
         window.clear();
