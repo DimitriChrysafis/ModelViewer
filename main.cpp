@@ -3,7 +3,7 @@
 #include "camera.hpp" // Include the camera header
 
 int main() {
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cow.obj")) {
+    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/teapot.obj")) {
         return -1;
     }
 

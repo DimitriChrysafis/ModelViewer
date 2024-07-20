@@ -55,23 +55,33 @@ sf::Vector3f rotateVertex(const sf::Vector3f& vertex, float angleX, float angleY
 }
 
 sf::FloatRect calculateBoundingBox(const std::vector<Vertex>& vertices, float angleX, float angleY, float zoom) {
+    // Initialize bounding box with extreme values
     sf::FloatRect boundingBox;
-    boundingBox.left = boundingBox.top = std::numeric_limits<float>::max();
-    boundingBox.width = boundingBox.height = std::numeric_limits<float>::lowest();
+    boundingBox.left = std::numeric_limits<float>::max();
+    boundingBox.top = std::numeric_limits<float>::max();
+    boundingBox.width = std::numeric_limits<float>::lowest();
+    boundingBox.height = std::numeric_limits<float>::lowest();
 
     for (const auto& vertex : vertices) {
+        // Apply rotation and zoom to the vertex
         sf::Vector3f rotatedVertex = rotateVertex({vertex.x * zoom, vertex.y * zoom, vertex.z * zoom}, angleX, angleY);
         float x = 320 + rotatedVertex.x * 100;
         float y = 240 - rotatedVertex.y * 100;
 
+        // Update bounding box dimensions
         if (x < boundingBox.left) boundingBox.left = x;
-        if (x > boundingBox.left + boundingBox.width) boundingBox.width = x - boundingBox.left;
         if (y < boundingBox.top) boundingBox.top = y;
-        if (y > boundingBox.top + boundingBox.height) boundingBox.height = y - boundingBox.top;
+        if (x > boundingBox.width) boundingBox.width = x;
+        if (y > boundingBox.height) boundingBox.height = y;
     }
+
+    // Calculate width and height of the bounding box
+    boundingBox.width -= boundingBox.left;
+    boundingBox.height -= boundingBox.top;
 
     return boundingBox;
 }
+
 void drawBoundingBox(sf::RenderWindow& window, const sf::FloatRect& boundingBox) {
     sf::VertexArray lines(sf::LinesStrip, 5);
 
@@ -87,6 +97,7 @@ void drawBoundingBox(sf::RenderWindow& window, const sf::FloatRect& boundingBox)
 
     window.draw(lines);
 }
+
 
 
 void drawConvexHull(sf::RenderWindow& window, float angleX, float angleY, float zoom) {
