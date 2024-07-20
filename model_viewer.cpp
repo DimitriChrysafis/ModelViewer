@@ -110,16 +110,15 @@ void drawConvexHull(sf::RenderWindow& window, float angleX, float angleY, float 
     window.draw(lines);
 }
 
-
-void drawModelWireframe(sf::RenderWindow& window, float angleX, float angleY, float zoom) {
+void drawModelWireframe(sf::RenderWindow& window, float angleX, float angleY, float zoom, sf::Vector3f offset) {
     sf::VertexArray lines(sf::Lines);
     for (const auto& face : faces) {
         for (size_t i = 0; i < face.vertices.size(); ++i) {
             const auto& v0 = vertices[face.vertices[i]];
             const auto& v1 = vertices[face.vertices[(i + 1) % face.vertices.size()]];
 
-            sf::Vector3f rv0 = rotateVertex({ v0.x * zoom, v0.y * zoom, v0.z * zoom }, angleX, angleY);
-            sf::Vector3f rv1 = rotateVertex({ v1.x * zoom, v1.y * zoom, v1.z * zoom }, angleX, angleY);
+            sf::Vector3f rv0 = rotateVertex({ v0.x * zoom + offset.x, v0.y * zoom + offset.y, v0.z * zoom + offset.z }, angleX, angleY);
+            sf::Vector3f rv1 = rotateVertex({ v1.x * zoom + offset.x, v1.y * zoom + offset.y, v1.z * zoom + offset.z }, angleX, angleY);
 
             lines.append(sf::Vertex(sf::Vector2f(320 + rv0.x * 100, 240 - rv0.y * 100), sf::Color::White));
             lines.append(sf::Vertex(sf::Vector2f(320 + rv1.x * 100, 240 - rv1.y * 100), sf::Color::White));
@@ -128,7 +127,7 @@ void drawModelWireframe(sf::RenderWindow& window, float angleX, float angleY, fl
     window.draw(lines);
 }
 
-void drawModelSolid(sf::RenderWindow& window, float angleX, float angleY, float zoom) {
+void drawModelSolid(sf::RenderWindow& window, float angleX, float angleY, float zoom, sf::Vector3f offset) {
     sf::VertexArray triangles(sf::Triangles);
     for (const auto& face : faces) {
         if (face.vertices.size() < 3) continue;
@@ -137,9 +136,9 @@ void drawModelSolid(sf::RenderWindow& window, float angleX, float angleY, float 
             const auto& v1 = vertices[face.vertices[i]];
             const auto& v2 = vertices[face.vertices[i + 1]];
 
-            sf::Vector3f rv0 = rotateVertex({ v0.x * zoom, v0.y * zoom, v0.z * zoom }, angleX, angleY);
-            sf::Vector3f rv1 = rotateVertex({ v1.x * zoom, v1.y * zoom, v1.z * zoom }, angleX, angleY);
-            sf::Vector3f rv2 = rotateVertex({ v2.x * zoom, v2.y * zoom, v2.z * zoom }, angleX, angleY);
+            sf::Vector3f rv0 = rotateVertex({ v0.x * zoom + offset.x, v0.y * zoom + offset.y, v0.z * zoom + offset.z }, angleX, angleY);
+            sf::Vector3f rv1 = rotateVertex({ v1.x * zoom + offset.x, v1.y * zoom + offset.y, v1.z * zoom + offset.z }, angleX, angleY);
+            sf::Vector3f rv2 = rotateVertex({ v2.x * zoom + offset.x, v2.y * zoom + offset.y, v2.z * zoom + offset.z }, angleX, angleY);
 
             triangles.append(sf::Vertex(sf::Vector2f(320 + rv0.x * 100, 240 - rv0.y * 100), sf::Color::Red));
             triangles.append(sf::Vertex(sf::Vector2f(320 + rv1.x * 100, 240 - rv1.y * 100), sf::Color::Red));

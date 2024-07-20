@@ -4,12 +4,15 @@
 
 
 int main() {
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/horse.obj")) {
+    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/xyzrgb_dragon.obj")) {
         return -1;
     }
 
     sf::RenderWindow window(sf::VideoMode(640, 480), "3D Thing");
     window.setFramerateLimit(60);
+
+
+    sf::Vector3f offset(0.0f, 0.0f, 0.0f);
 
     float angleX = 0.0f;
     float angleY = 0.0f;
@@ -56,9 +59,9 @@ int main() {
 
         window.clear();
         if (wireframe) {
-            drawModelWireframe(window, angleX, angleY, zoom);
+            drawModelWireframe(window, angleX, angleY, zoom, offset);
         } else {
-            drawModelSolid(window, angleX, angleY, zoom);
+            drawModelSolid(window, angleX, angleY, zoom, offset);
         }
         if (showBoundingBox) {
             drawBoundingBox(window, boundingBox);
