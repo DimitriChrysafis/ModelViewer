@@ -99,9 +99,6 @@ void drawBoundingBox(sf::RenderWindow& window, const sf::FloatRect& boundingBox)
     window.draw(lines);
 }
 
-
-
-
 void drawConvexHull(sf::RenderWindow& window, float angleX, float angleY, float zoom) {
     std::vector<sf::Vector3f> modelVertices;
     for (const auto& vertex : vertices) {

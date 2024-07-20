@@ -4,7 +4,7 @@
 #include <cmath>
 
 int main() {
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/xyzrgb_dragon.obj")) {
+    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cow.obj")) {
         return -1;
     }
 
@@ -25,7 +25,6 @@ int main() {
     float initialZoomX = window.getSize().x / (boundingBox.width + 40); // Adding some margin
     float initialZoomY = window.getSize().y / (boundingBox.height + 40); // Adding some margin
     zoom = std::min(initialZoomX, initialZoomY);
-
 
     while (window.isOpen()) {
         sf::Event event;
