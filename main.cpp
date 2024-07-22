@@ -17,10 +17,10 @@ int main() {
     bool wireframe = false;
     bool showBoundingBox = false;
     bool showConvexHull = false;
+    bool pointsMode = false; // Add a new boolean for points mode
 
     Camera camera; // Create an instance of Camera
 
-    // Calculate initial bounding box and determine initial zoom level
     sf::FloatRect boundingBox = calculateBoundingBox(vertices, angleX, angleY, 1.0f);
     float initialZoomX = window.getSize().x / (boundingBox.width + 40); // Adding some margin
     float initialZoomY = window.getSize().y / (boundingBox.height + 40); // Adding some margin
@@ -41,6 +41,9 @@ int main() {
                 if (event.key.code == sf::Keyboard::C) {
                     showConvexHull = !showConvexHull;
                 }
+                if (event.key.code == sf::Keyboard::T) {
+                    pointsMode = !pointsMode; // Toggle points mode
+                }
             }
             if (event.type == sf::Event::MouseWheelScrolled) {
                 zoom += event.mouseWheelScroll.delta * 0.1f;
@@ -48,16 +51,16 @@ int main() {
             }
         }
 
-        // Update camera based on input
         camera.update(window, angleX, angleY, zoom);
 
-        // Calculate the bounding box if needed
         if (showBoundingBox) {
             boundingBox = calculateBoundingBox(vertices, angleX, angleY, zoom);
         }
 
         window.clear();
-        if (wireframe) {
+        if (pointsMode) {
+            drawModelPoints(window, angleX, angleY, zoom);
+        } else if (wireframe) {
             drawModelWireframe(window, angleX, angleY, zoom);
         } else {
             drawModelSolid(window, angleX, angleY, zoom);

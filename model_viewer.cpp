@@ -158,3 +158,13 @@ void drawModelSolid(sf::RenderWindow& window, float angleX, float angleY, float 
     }
     window.draw(triangles);
 }
+
+void drawModelPoints(sf::RenderWindow& window, float angleX, float angleY, float zoom) {
+    sf::VertexArray points(sf::Points);
+    for (const auto& vertex : vertices) {
+        sf::Vector3f rv = rotateVertex({ vertex.x * zoom, vertex.y * zoom, vertex.z * zoom }, angleX, angleY);
+        points.append(sf::Vertex(sf::Vector2f(320 + rv.x * 100, 240 - rv.y * 100), sf::Color::White));
+    }
+    window.draw(points);
+}
+
