@@ -1,6 +1,10 @@
 #include "convex_hull.hpp"
 #include "model_viewer.hpp"
+#include "kdtree.hpp"
 
+float distance(const sf::Vector3f& a, const sf::Vector3f& b) {
+    return std::sqrt(std::pow(a.x - b.x, 2) + std::pow(a.y - b.y, 2) + std::pow(a.z - b.z, 2));
+}
 std::vector<Vertex> vertices;
 std::vector<Face> faces;
 
@@ -168,3 +172,25 @@ void drawModelPoints(sf::RenderWindow& window, float angleX, float angleY, float
     window.draw(points);
 }
 
+void drawNearestNeighbors(sf::RenderWindow& window, float angleX, float angleY, float zoom) {
+    std::vector<sf::Vector3f> modelVertices;
+    for (const auto& vertex : vertices) {
+        modelVertices.push_back({ vertex.x * zoom, vertex.y * zoom, vertex.z * zoom });
+    }
+
+    KDTree kdtree(modelVertices);
+
+    for (const auto& vertex : modelVertices) {
+        auto neighbors = kdtree.findNearestNeighbors(vertex, 3);
+
+        sf::VertexArray lines(sf::Lines);
+        for (const auto& neighbor : neighbors) {
+            sf::Vector3f rv0 = rotateVertex(vertex, angleX, angleY);
+            sf::Vector3f rv1 = rotateVertex(neighbor, angleX, angleY);
+
+            lines.append(sf::Vertex(sf::Vector2f(320 + rv0.x * 100, 240 - rv0.y * 100), sf::Color::Cyan));
+            lines.append(sf::Vertex(sf::Vector2f(320 + rv1.x * 100, 240 - rv1.y * 100), sf::Color::Cyan));
+        }
+        window.draw(lines);
+    }
+}

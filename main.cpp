@@ -1,10 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include "model_viewer.hpp"
-#include "camera.hpp" // Include the camera header
+#include "camera.hpp"
+#include "kdtree.hpp"
 #include <cmath>
 
 int main() {
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cow.obj")) {
+    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/spot.obj")) {
         return -1;
     }
 
@@ -17,13 +18,14 @@ int main() {
     bool wireframe = false;
     bool showBoundingBox = false;
     bool showConvexHull = false;
-    bool pointsMode = false; // Add a new boolean for points mode
+    bool pointsMode = false;
+    bool showNearestNeighbors = false;
 
-    Camera camera; // Create an instance of Camera
+    Camera camera;
 
     sf::FloatRect boundingBox = calculateBoundingBox(vertices, angleX, angleY, 1.0f);
-    float initialZoomX = window.getSize().x / (boundingBox.width + 40); // Adding some margin
-    float initialZoomY = window.getSize().y / (boundingBox.height + 40); // Adding some margin
+    float initialZoomX = window.getSize().x / (boundingBox.width + 40);
+    float initialZoomY = window.getSize().y / (boundingBox.height + 40);
     zoom = std::min(initialZoomX, initialZoomY);
 
     while (window.isOpen()) {
@@ -42,7 +44,10 @@ int main() {
                     showConvexHull = !showConvexHull;
                 }
                 if (event.key.code == sf::Keyboard::T) {
-                    pointsMode = !pointsMode; // Toggle points mode
+                    pointsMode = !pointsMode;
+                }
+                if (event.key.code == sf::Keyboard::N) {
+                    showNearestNeighbors = !showNearestNeighbors;
                 }
             }
             if (event.type == sf::Event::MouseWheelScrolled) {
@@ -70,6 +75,9 @@ int main() {
         }
         if (showConvexHull) {
             drawConvexHull(window, angleX, angleY, zoom);
+        }
+        if (showNearestNeighbors) {
+            drawNearestNeighbors(window, angleX, angleY, zoom);
         }
         window.display();
     }

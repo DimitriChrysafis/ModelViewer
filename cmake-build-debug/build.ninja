@@ -77,6 +77,13 @@ build CMakeFiles/PlayerGROUND.dir/convex_hull.cpp.o: CXX_COMPILER__PlayerGROUND_
   OBJECT_DIR = CMakeFiles/PlayerGROUND.dir
   OBJECT_FILE_DIR = CMakeFiles/PlayerGROUND.dir
 
+build CMakeFiles/PlayerGROUND.dir/kdtree.cpp.o: CXX_COMPILER__PlayerGROUND_unscanned_Debug /Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/kdtree.cpp || cmake_object_order_depends_target_PlayerGROUND
+  DEP_FILE = CMakeFiles/PlayerGROUND.dir/kdtree.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/PlayerGROUND.dir
+  OBJECT_FILE_DIR = CMakeFiles/PlayerGROUND.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PlayerGROUND
@@ -85,7 +92,7 @@ build CMakeFiles/PlayerGROUND.dir/convex_hull.cpp.o: CXX_COMPILER__PlayerGROUND_
 #############################################
 # Link the executable PlayerGROUND
 
-build PlayerGROUND: CXX_EXECUTABLE_LINKER__PlayerGROUND_Debug CMakeFiles/PlayerGROUND.dir/main.cpp.o CMakeFiles/PlayerGROUND.dir/model_viewer.cpp.o CMakeFiles/PlayerGROUND.dir/camera.cpp.o CMakeFiles/PlayerGROUND.dir/convex_hull.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.6.1.dylib /opt/homebrew/lib/libsfml-window.2.6.1.dylib /opt/homebrew/lib/libsfml-system.2.6.1.dylib
+build PlayerGROUND: CXX_EXECUTABLE_LINKER__PlayerGROUND_Debug CMakeFiles/PlayerGROUND.dir/main.cpp.o CMakeFiles/PlayerGROUND.dir/model_viewer.cpp.o CMakeFiles/PlayerGROUND.dir/camera.cpp.o CMakeFiles/PlayerGROUND.dir/convex_hull.cpp.o CMakeFiles/PlayerGROUND.dir/kdtree.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.6.1.dylib /opt/homebrew/lib/libsfml-window.2.6.1.dylib /opt/homebrew/lib/libsfml-system.2.6.1.dylib
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk
   LINK_LIBRARIES = -Wl,-rpath,/opt/homebrew/lib  /opt/homebrew/lib/libsfml-graphics.2.6.1.dylib  /opt/homebrew/lib/libsfml-window.2.6.1.dylib  /opt/homebrew/lib/libsfml-system.2.6.1.dylib
   OBJECT_DIR = CMakeFiles/PlayerGROUND.dir
