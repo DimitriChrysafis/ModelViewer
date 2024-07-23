@@ -1,7 +1,7 @@
 #include "camera.hpp"
 
 Camera::Camera()
-        : movementSpeed(0.1f), zoomSpeed(0.1f) // Initialize movement and zoom speeds
+        : movementSpeed(0.1f), zoomSpeed(0.2f) // Initialize movement and zoom speeds
 {}
 
 void Camera::update(sf::RenderWindow& window, float& angleX, float& angleY, float& zoom) {

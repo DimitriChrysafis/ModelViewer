@@ -12,6 +12,7 @@ add_executable(PlayerGROUND main.cpp
         camera.cpp
         convex_hull.cpp
         kdtree.hpp
-        kdtree.cpp)
+        kdtree.cpp
+)
 
 target_link_libraries(PlayerGROUND sfml-graphics sfml-window sfml-system)

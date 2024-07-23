@@ -5,7 +5,7 @@
 #include <cmath>
 
 int main() {
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cow.obj")) {
+    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cloud.obj")) {
         return -1;
     }
 
@@ -24,9 +24,10 @@ int main() {
     Camera camera;
 
     sf::FloatRect boundingBox = calculateBoundingBox(vertices, angleX, angleY, 1.0f);
-    float initialZoomX = window.getSize().x / (boundingBox.width + 40);
-    float initialZoomY = window.getSize().y / (boundingBox.height + 40);
-    zoom = std::min(initialZoomX, initialZoomY);
+    float initialZoomX = window.getSize().x / (boundingBox.width );
+    float initialZoomY = window.getSize().y / (boundingBox.height );
+    zoom = std::min(initialZoomX, initialZoomY) * 0.5f; // Adjust the multiplier as needed
+
 
     while (window.isOpen()) {
         sf::Event event;
