@@ -181,7 +181,7 @@ void drawNearestNeighbors(sf::RenderWindow& window, float angleX, float angleY, 
     KDTree kdtree(modelVertices);
 
     for (const auto& vertex : modelVertices) {
-        auto neighbors = kdtree.findNearestNeighbors(vertex, 10);
+        auto neighbors = kdtree.findNearestNeighbors(vertex, 5);
 
         sf::VertexArray lines(sf::Lines);
         for (const auto& neighbor : neighbors) {
