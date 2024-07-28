@@ -1,6 +1,8 @@
 # Model Viewer
  A way to view 3d models but with a few tricks up the sleeve
 
+ ![](demo.gif)
+
 ### Very cool element
 
 Because of how difficult it is to compute the blue design, I use a spatial partitioning KD tree to organize
@@ -32,4 +34,4 @@ Here's a rundown:
 - **X**: Toggle spin along the Y-axis to make it spin (added for the gif)
 
 
-![](demo.gif)
+
