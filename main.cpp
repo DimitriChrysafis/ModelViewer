@@ -1,86 +1,92 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "model_viewer.hpp"
 #include "camera.hpp"
 #include "kdtree.hpp"
 #include <cmath>
 
+using namespace std;
+using namespace sf;
+
 int main() {
     if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cloud.obj")) {
         return -1;
     }
+    // i am not adding comments
+    RenderWindow win(VideoMode(640, 480), "View in 3d");
+    win.setFramerateLimit(60);
 
-    sf::RenderWindow window(sf::VideoMode(640, 480), "3D Thing");
-    window.setFramerateLimit(60);
-
-    float angleX = 0.0f;
-    float angleY = 0.0f;
+    // i am not adding comments to this code becasue if you dont get it you should not be here
+    float xRot = 0.0f;
+    float yRot = 0.0f;
     float zoom = 1.0f;
-    bool wireframe = false;
-    bool showBoundingBox = false;
-    bool showConvexHull = false;
-    bool pointsMode = false;
-    bool showNearestNeighbors = false;
+    bool wireframeMode = false;
+    bool showBox = false;
+    bool showHull = false;
+    bool pointMode = false;
+    bool showNeighbors = false;
 
-    Camera camera;
+    Camera cam;
 
-    sf::FloatRect boundingBox = calculateBoundingBox(vertices, angleX, angleY, 1.0f);
-    float initialZoomX = window.getSize().x / (boundingBox.width );
-    float initialZoomY = window.getSize().y / (boundingBox.height );
-    zoom = std::min(initialZoomX, initialZoomY) * 0.5f; // Adjust the multiplier as needed
+    // just add a box
+    FloatRect boundingBox = calculateBoundingBox(vertices, xRot, yRot, 1.0f);
+    float zoomX = win.getSize().x / boundingBox.width;
+    float zoomY = win.getSize().y / boundingBox.height;
+    zoom = min(zoomX, zoomY) * 0.5f;
 
-
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
-            if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::Z) {
-                    wireframe = !wireframe;
+    while (win.isOpen()) {
+        Event event;
+        while (win.pollEvent(event)) {
+            if (event.type == Event::Closed) {
+                win.close();
+            }
+            if (event.type == Event::KeyPressed) {
+                if (event.key.code == Keyboard::Z) {
+                    wireframeMode = !wireframeMode;
                 }
-                if (event.key.code == sf::Keyboard::B) {
-                    showBoundingBox = !showBoundingBox;
+                if (event.key.code == Keyboard::B) {
+                    showBox = !showBox;
                 }
-                if (event.key.code == sf::Keyboard::C) {
-                    showConvexHull = !showConvexHull;
+                if (event.key.code == Keyboard::C) {
+                    showHull = !showHull;
                 }
-                if (event.key.code == sf::Keyboard::T) {
-                    pointsMode = !pointsMode;
+                if (event.key.code == Keyboard::T) {
+                    pointMode = !pointMode;
                 }
-                if (event.key.code == sf::Keyboard::N) {
-                    showNearestNeighbors = !showNearestNeighbors;
+                if (event.key.code == Keyboard::N) {
+                    showNeighbors = !showNeighbors;
                 }
             }
-            if (event.type == sf::Event::MouseWheelScrolled) {
+            if (event.type == Event::MouseWheelScrolled) {
                 zoom += event.mouseWheelScroll.delta * 0.1f;
                 if (zoom < 0.1f) zoom = 0.1f;
             }
         }
 
-        camera.update(window, angleX, angleY, zoom);
+        cam.update(win, xRot, yRot, zoom);
 
-        if (showBoundingBox) {
-            boundingBox = calculateBoundingBox(vertices, angleX, angleY, zoom);
+        if (showBox) {
+            boundingBox = calculateBoundingBox(vertices, xRot, yRot, zoom);
         }
 
-        window.clear();
-        if (pointsMode) {
-            drawModelPoints(window, angleX, angleY, zoom);
-        } else if (wireframe) {
-            drawModelWireframe(window, angleX, angleY, zoom);
+        win.clear();
+        if (pointMode) {
+            drawModelPoints(win, xRot, yRot, zoom);
+        } else if (wireframeMode) {
+            drawModelWireframe(win, xRot, yRot, zoom);
         } else {
-            drawModelSolid(window, angleX, angleY, zoom);
+            drawModelSolid(win, xRot, yRot, zoom);
         }
-        if (showBoundingBox) {
-            drawBoundingBox(window, boundingBox);
+        if (showBox) {
+            drawBoundingBox(win, boundingBox);
         }
-        if (showConvexHull) {
-            drawConvexHull(window, angleX, angleY, zoom);
+        if (showHull) {
+            drawConvexHull(win, xRot, yRot, zoom);
         }
-        if (showNearestNeighbors) {
-            drawNearestNeighbors(window, angleX, angleY, zoom);
+        if (showNeighbors) {
+            drawNearestNeighbors(win, xRot, yRot, zoom);
         }
-        window.display();
+        win.display();
     }
 
     return 0;
