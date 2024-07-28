@@ -1,7 +1,13 @@
 # Model Viewer
  A way to view 3d models but with a few tricks up the sleeve
 
- ![](demo.gif)
+<div style="display: flex; justify-content: center;">
+    <img src="demo.gif" width="400">
+    <img src="demo2.gif" width="200">
+</div>
+<div style="display: flex; justify-content: center;">
+    <img src="demo3.gif" width="200">
+</div>
 
 ### Very cool element
 
