@@ -1,5 +1,5 @@
 # Model Viewer
-A way to view 3d models but with a few tricks up the sleeve
+A way to view 3d models but with a few tricks up the sleeve. read the code i made it easy to understand-
 
 <div style="display: flex; justify-content: center;">
 <img src="demo.gif" width="600" height="400">
@@ -37,5 +37,5 @@ Here's a rundown:
 - **N**: Toggle the blue cool design which is just connecting to the adjacent neighbors without passing through the shape to make a cool blue wireframe-like design
 
 - **Y**: Toggle spin along the X-axis to make it spin (added for the gif)
--
+  
 - **X**: Toggle spin along the Y-axis to make it spin (added for the gif)
