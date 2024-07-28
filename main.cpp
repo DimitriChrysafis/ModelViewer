@@ -9,6 +9,7 @@ using namespace std;
 using namespace sf;
 
 int main() {
+    // oh yeah change ur file path lol
     if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cow.obj")) {
         return -1;
     }
@@ -25,7 +26,8 @@ int main() {
     bool showHull = false;
     bool pointMode = false;
     bool showNeighbors = false;
-
+    bool spinX = false;
+    bool spinY = false;
     Camera cam;
 
     // just add a box
@@ -56,6 +58,12 @@ int main() {
                 if (event.key.code == Keyboard::N) {
                     showNeighbors = !showNeighbors;
                 }
+                if (event.key.code == Keyboard::Y) {
+                    spinX = !spinX;
+                }
+                if (event.key.code == Keyboard::X) {
+                    spinY = !spinY;
+                }
             }
             if (event.type == Event::MouseWheelScrolled) {
                 zoom += event.mouseWheelScroll.delta * 0.1f;
@@ -64,6 +72,14 @@ int main() {
         }
 
         cam.update(win, xRot, yRot, zoom);
+
+
+        if (spinX) {
+            xRot += 0.1f;
+        }
+        if (spinY) {
+            yRot += 0.1f;
+        }
 
         if (showBox) {
             boundingBox = calculateBoundingBox(vertices, xRot, yRot, zoom);
