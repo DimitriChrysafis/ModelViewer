@@ -1,21 +1,20 @@
 #include "camera.hpp"
-
+using namespace sf;
 Camera::Camera()
-        : movementSpeed(0.1f), zoomSpeed(0.2f) // Initialize movement and zoom speeds
+        : movementSpeed(0.1f), zoomSpeed(0.2f)
 {}
-
-void Camera::update(sf::RenderWindow& window, float& angleX, float& angleY, float& zoom) {
-    // Camera rotation with arrow keys
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+// this is so basic im not bothering to add comments
+void Camera::update(RenderWindow& window, float& angleX, float& angleY, float& zoom) {
+    if (Keyboard::isKeyPressed(Keyboard::Left)) {
         angleY -= movementSpeed;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+    if (Keyboard::isKeyPressed(Keyboard::Right)) {
         angleY += movementSpeed;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+    if (Keyboard::isKeyPressed(Keyboard::Up)) {
         angleX -= movementSpeed;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+    if (Keyboard::isKeyPressed(Keyboard::Down)) {
         angleX += movementSpeed;
     }
 

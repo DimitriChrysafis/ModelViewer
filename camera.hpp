@@ -7,12 +7,11 @@ class Camera {
 public:
     Camera();
 
-    // Update camera based on input
     void update(sf::RenderWindow& window, float& angleX, float& angleY, float& zoom);
 
 private:
-    float movementSpeed; // Speed of movement
-    float zoomSpeed;     // Speed of zoom
+    float movementSpeed;
+    float zoomSpeed;
 };
 
-#endif // CAMERA_HPP
+#endif
