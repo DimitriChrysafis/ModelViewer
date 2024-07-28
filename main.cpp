@@ -9,7 +9,7 @@ using namespace std;
 using namespace sf;
 
 int main() {
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cloud.obj")) {
+    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cow.obj")) {
         return -1;
     }
     // i am not adding comments
