@@ -6,8 +6,8 @@
 </div>
 
 <div style="display: flex; justify-content: center;">
-     <img src="demo2.gif" width="200">
-    <img src="demo3.gif" width="200">
+     <img src="demo2.gif" width="300">
+    <img src="demo3.gif" width="300">
 </div>
 
 ### Very cool element
