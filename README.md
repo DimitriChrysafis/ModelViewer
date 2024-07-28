@@ -6,17 +6,13 @@
 Because of how difficult it is to compute the blue design, I use a spatial partitioning KD tree to organize
 Here's a rundown:
 
-#### Recursive Search:
-- Start at the root and recursively navigate the tree.
-- Decide which subtree to explore based on current axis and point distances.
+- start at the root and recursively navigate the tree.
+- Ddcide which subtree to explore based on current axis and point distances.
 
-#### Finding Neighbors:
-- Maintain a priority queue to track closest points found.
-- Adjust the queue to keep only the k nearest neighbors.
+- use a priority queue to track closest points found.
+- adjust the queue to keep only the k nearest neighbors.
 
-#### Drawing Neighbors:
-- Rotate vertices based on viewing angles (`angleX` and `angleY`).
-- Draw lines on screen from each vertex to its nearest neighbors, scaled for zoom.
+- rotate vertices based on viewing angles (`angleX` and `angleY`).
 
 
 ### Keyboard Shortcuts for Application Controls
