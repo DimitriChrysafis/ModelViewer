@@ -4,7 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <set>
+#include <algorithm>
+using namespace sf;
+using namespace std;
+vector<Vector3f> calculateConvexHull(const vector<Vector3f>& points);
 
-std::vector<sf::Vector3f> calculateConvexHull(const std::vector<sf::Vector3f>& points);
-
-#endif // CONVEX_HULL_HPP
+#endif
