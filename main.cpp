@@ -9,10 +9,11 @@ using namespace std;
 using namespace sf;
 
 int main() {
-    // oh yeah change ur file path lol
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ModelViewer/demos/cow.obj")) {
+    // oh yeah change ur file path lol sometimes it breaks
+    if (!loadOBJ("../demos/cow.obj")) {
         return -1;
     }
+
     // i am not adding comments
     RenderWindow win(VideoMode(640, 480), "View in 3d");
     win.setFramerateLimit(60);

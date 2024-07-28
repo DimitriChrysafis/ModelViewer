@@ -16,3 +16,5 @@ add_executable(PlayerGROUND main.cpp
 )
 
 target_link_libraries(PlayerGROUND sfml-graphics sfml-window sfml-system)
+set(RESOURCE_DIR ${CMAKE_SOURCE_DIR}/demos)
+file(COPY ${RESOURCE_DIR}/cow.obj DESTINATION ${CMAKE_BINARY_DIR})
