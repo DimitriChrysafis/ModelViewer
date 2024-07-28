@@ -2,7 +2,7 @@
  A way to view 3d models but with a few tricks up the sleeve
 
 <div style="display: flex; justify-content: center;">
-    <img src="demo.gif" width="400">
+<img src="demo.gif" width="600" height="400">
     <img src="demo2.gif" width="400">
 </div>
 <div style="display: flex; justify-content: center;">
