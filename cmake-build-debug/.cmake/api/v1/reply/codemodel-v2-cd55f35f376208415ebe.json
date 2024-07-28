@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/cmake-build-debug",
-		"source" : "/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel"
+		"build" : "/Users/dimitrichrysafis/Documents/GitHub/ModelViewer/cmake-build-debug",
+		"source" : "/Users/dimitrichrysafis/Documents/GitHub/ModelViewer"
 	},
 	"version" : 
 	{

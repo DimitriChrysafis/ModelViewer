@@ -10,7 +10,7 @@ using namespace sf;
 
 int main() {
     // oh yeah change ur file path lol
-    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ViewerlModel/demos/cow.obj")) {
+    if (!loadOBJ("/Users/dimitrichrysafis/Documents/GitHub/ModelViewer/demos/cow.obj")) {
         return -1;
     }
     // i am not adding comments
