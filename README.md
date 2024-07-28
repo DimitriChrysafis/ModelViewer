@@ -3,10 +3,10 @@
 
 <div style="display: flex; justify-content: center;">
     <img src="demo.gif" width="400">
-    <img src="demo2.gif" width="200">
+    <img src="demo2.gif" width="400">
 </div>
 <div style="display: flex; justify-content: center;">
-    <img src="demo3.gif" width="200">
+    <img src="demo3.gif" width="400">
 </div>
 
 ### Very cool element
