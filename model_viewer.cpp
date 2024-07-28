@@ -206,7 +206,7 @@ void drawNearestNeighbors(RenderWindow& window, float angleX, float angleY, floa
     KDTree kdtree(modelVertices);
 
     for (const auto& vertex : modelVertices) {
-        auto neighbors = kdtree.findNearestNeighbors(vertex, 5);
+        auto neighbors = kdtree.findNearestNeighbors(vertex, 2);
 
         VertexArray lines(Lines);
         for (const auto& neighbor : neighbors) {

@@ -7,31 +7,34 @@
 #include <algorithm>
 #include <cmath>
 
+using namespace sf;
+using namespace std;
+
 struct KDNode {
-    sf::Vector3f point;
+    Vector3f point;
     KDNode* left;
     KDNode* right;
 
-    KDNode(const sf::Vector3f& pt) : point(pt), left(nullptr), right(nullptr) {}
+    KDNode(const Vector3f& pt) : point(pt), left(nullptr), right(nullptr) {}
 };
 
 class KDTree {
 public:
-    KDTree(const std::vector<sf::Vector3f>& points);
+    KDTree(const vector<Vector3f>& points);
     ~KDTree();
 
-    std::vector<sf::Vector3f> findNearestNeighbors(const sf::Vector3f& target, int k);
+    vector<Vector3f> findNearestNeighbors(const Vector3f& target, int k);
 
 private:
-    KDNode* build(std::vector<sf::Vector3f>& points, int start, int end, int depth);
+    KDNode* build(vector<Vector3f>& points, int start, int end, int depth);
     void destroy(KDNode* node);
 
     template <typename Compare>
-    void searchNearest(KDNode* node, const sf::Vector3f& target, int k, int depth, std::priority_queue<std::pair<float, sf::Vector3f>, std::vector<std::pair<float, sf::Vector3f>>, Compare>& best);
+    void searchNearest(KDNode* node, const Vector3f& target, int k, int depth, priority_queue<pair<float, Vector3f>, vector<pair<float, Vector3f>>, Compare>& best);
 
-    float squaredDistance(const sf::Vector3f& a, const sf::Vector3f& b) const;
+    float squaredDistance(const Vector3f& a, const Vector3f& b) const;
 
     KDNode* root;
 };
 
-#endif // KDTREE_HPP
+#endif
